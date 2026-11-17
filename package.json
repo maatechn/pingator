@@ -1,0 +1,24 @@
+{
+  "name": "pingator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maatechn/pingator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/maatechn/pingator/issues"
+  },
+  "homepage": "https://github.com/maatechn/pingator#readme",
+  "devDependencies": {
+    "electron": "^45.3.3"
+  }
+}
