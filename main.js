@@ -1,32 +1,59 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
-function createWindow() {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+const windowWidth = 800;
+const windowHeight = 600;
+
+let mainWindow;
+let preloadWindow;
+
+function createWindows() {
+
+  preloadWindow = new BrowserWindow({
+    width: windowWidth,
+    height: windowHeight,
     frame: false,
+    transparent: true,
+    alwaysOnTop: true,
+    resizable: false
+  });
+  preloadWindow.loadFile('elements/preloader.html');
+
+  mainWindow = new BrowserWindow({
+    width: windowWidth,
+    height: windowHeight,
+    frame: false,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
+  mainWindow.loadFile('index.html');
 
-  win.loadFile('index.html');
+  mainWindow.once('ready-to-show', () => {
+    setTimeout(() => {
+      if (preloadWindow && !preloadWindow.isDestroyed()) {
+        preloadWindow.close();
+      }
+      mainWindow.show();
+    }, 600);
+  });
 
-  ipcMain.on('window-minimize', () => win.minimize());
+  ipcMain.on('window-minimize', () => mainWindow.minimize());
   ipcMain.on('window-maximize', () => {
-    if (win.isMaximized()) {
-      win.unmaximize();
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize();
     } else {
-      win.maximize();
+      mainWindow.maximize();
     }
   });
-  ipcMain.on('window-close', () => win.close());
+  ipcMain.on('window-close', () => mainWindow.close());
+
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(createWindows);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
