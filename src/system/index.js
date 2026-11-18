@@ -1,8 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
+const { launchPermited } = require('./init.js');
+
 let mainWindow;
-let preloadWindow;
 
 function createWindow() {
 
@@ -27,7 +28,14 @@ function createWindow() {
     }
   });
   ipcMain.on('window-close', () => mainWindow.close());
-  ipcMain.on('add', () => console.log('aaaa'));
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    if (launchPermited()) {
+      setTimeout(() => {
+          mainWindow.webContents.send('launch-permited', true);
+      }, 1000);
+    }
+  });
 
 }
 

@@ -5,3 +5,9 @@ contextBridge.exposeInMainWorld('windowControls', {
   maximize: () => ipcRenderer.send('window-maximize'),
   close: () => ipcRenderer.send('window-close')
 });
+
+contextBridge.exposeInMainWorld('api', {
+  onPush: (callback) => {
+    ipcRenderer.on('launch-permited', (event, result) => callback(result));
+  }
+});
