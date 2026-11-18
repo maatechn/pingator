@@ -63,3 +63,60 @@ body { font-family: sans-serif; background: #1e1e1e; color: #fff; }
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+
+.btn-add {
+  /* 1. Делаем идеальный квадрат */
+  width: 44px;
+  height: 44px;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+
+  /* 2. Центрируем содержимое */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 3. Внешний вид кнопки */
+  background-color: #2563eb;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* 4. Рисуем плюс через псевдоэлементы */
+.btn-add::before,
+.btn-add::after {
+  content: "";
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* Горизонтальная линия */
+.btn-add::before {
+  width: 18px;
+  height: 2px;
+}
+
+/* Вертикальная линия */
+.btn-add::after {
+  width: 2px;
+  height: 18px;
+}
+
+/* 5. Состояния при наведении и клике */
+.btn-add:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-add:active {
+  transform: scale(0.95);
+}
+
+.btn-add:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}

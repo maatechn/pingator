@@ -1,4 +1,5 @@
 import { createPreloader } from './preloader.js';
+import { createButton } from './card.js';
 
 // header buttons handlers
 document.getElementById('min-btn').addEventListener('click', () => window.windowControls.minimize());
@@ -11,5 +12,6 @@ content.append(createPreloader());
 window.api.onPush((result) => {
     if (result) {
         content.innerHTML = '';
+        content.append(createButton());
     }
 });
