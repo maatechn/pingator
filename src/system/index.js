@@ -17,7 +17,7 @@ function createWindows() {
     alwaysOnTop: true,
     resizable: false
   });
-  preloadWindow.loadFile('elements/preloader.html');
+  preloadWindow.loadFile('../renderer/preloader.html');
 
   mainWindow = new BrowserWindow({
     width: windowWidth,
@@ -25,12 +25,12 @@ function createWindows() {
     frame: false,
     show: false,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, '../preload.js'),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile('../renderer/index.html');
 
   mainWindow.once('ready-to-show', () => {
     setTimeout(() => {
