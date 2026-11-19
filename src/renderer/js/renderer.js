@@ -10,24 +10,24 @@ document.getElementById('close-btn').addEventListener('click', () => window.wind
 const content = document.querySelector('main');
 content.append(createPreloader());
 
+function renderContent() {
+    const btn = createButton();
+    btn.addEventListener('click', () => {
+        console.log('btn click!');
+        //test
+        const myData = { name: 'test', ip: '0.0.0.0', items: ['task1', 'task2'] }
+        const result = window.api.saveJson(myData);
+        if (result.success) {
+            console.log('Данные успешно сохранены!');
+        }
+    });
+    content.append(btn);
+}
+
 // wait loading
 window.api.onPush((result) => {
     if (result) {
         content.innerHTML = '';
-        const btn = createButton();
-        content.append(btn);
-        btn.addEventListener('click', () => {
-            const form = createForm();
-            content.append(form);
-        });
-        content.addEventListener('click', () => {
-            console.log('aaa');
-        });
-
-        setTimeout(() => {
-          console.log('test1');
-      }, 5000);
+        renderContent();
     }
 });
-
-console.log('test2');
