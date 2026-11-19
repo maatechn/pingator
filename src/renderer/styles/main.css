@@ -1,5 +1,9 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: sans-serif; background: #1e1e1e; color: #fff; }
+body { 
+    font-family: sans-serif; 
+    background: #1e1e1e; 
+    color: #fff;
+}
 
 .titlebar {
     height: 36px;
@@ -36,7 +40,9 @@ body { font-family: sans-serif; background: #1e1e1e; color: #fff; }
 .titlebar-btn:hover { background: #3e3e3e; color: #fff; }
 .titlebar-btn.close:hover { background: #e81123; color: #fff; }
 
-.content { padding: 20px; }
+.content { 
+    padding: 20px; 
+}
 
 .preloader {
     margin: 0;
@@ -66,19 +72,14 @@ body { font-family: sans-serif; background: #1e1e1e; color: #fff; }
 
 
 .btn-add {
-  /* 1. Делаем идеальный квадрат */
   width: 44px;
   height: 44px;
   aspect-ratio: 1 / 1;
   padding: 0;
-
-  /* 2. Центрируем содержимое */
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  /* 3. Внешний вид кнопки */
   background-color: #2563eb;
   border: none;
   border-radius: 10px;
@@ -86,7 +87,6 @@ body { font-family: sans-serif; background: #1e1e1e; color: #fff; }
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-/* 4. Рисуем плюс через псевдоэлементы */
 .btn-add::before,
 .btn-add::after {
   content: "";
@@ -95,19 +95,16 @@ body { font-family: sans-serif; background: #1e1e1e; color: #fff; }
   border-radius: 2px;
 }
 
-/* Горизонтальная линия */
 .btn-add::before {
   width: 18px;
   height: 2px;
 }
 
-/* Вертикальная линия */
 .btn-add::after {
   width: 2px;
   height: 18px;
 }
 
-/* 5. Состояния при наведении и клике */
 .btn-add:hover {
   background-color: #1d4ed8;
 }
@@ -119,4 +116,77 @@ body { font-family: sans-serif; background: #1e1e1e; color: #fff; }
 .btn-add:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
+}
+
+/* OBJECT CREATION FORM */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  padding: 30px;
+  background-color: #2d2d2d;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  user-select: none;
+}
+
+.form-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 1;
+    color: #888888;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.form-close-btn:hover {
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 22px;
+}
+
+.modal input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  cursor: text;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background-color: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: #005a9e;
 }
