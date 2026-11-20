@@ -37,17 +37,3 @@ function renderContent() {
     Card.viewAddButton(Modal);
 
 }
-
-//function renderContent() {
-    // const btn = createButton();
-    // btn.addEventListener('click', () => {
-    //     console.log('btn click!');
-    //     //test
-    //     const myData = { name: 'test', ip: '0.0.0.0', items: ['task1', 'task2'] }
-    //     const result = window.api.saveJson(myData);
-    //     if (result.success) {
-    //         console.log('Данные успешно сохранены!');
-    //     }
-    // });
-    // content.append(btn);
-

@@ -38,6 +38,7 @@ export class Modal {
         nameInput.addEventListener('input', () => {
             console.log('test input name');
         });
+        this.nameInput = nameInput;
         this.modal.append(nameInput);
     }
 
@@ -49,6 +50,7 @@ export class Modal {
         IpInput.addEventListener('input', () => {
             console.log('test inmup ip');
         });
+        this.IpInput = IpInput;
         this.modal.append(IpInput);
     }
 
@@ -59,6 +61,13 @@ export class Modal {
 
         createBtn.addEventListener('click', () => {
             console.log('test crt btn');
+            //test
+            const myData = { name: this.nameInput.value, ip: this.IpInput.value}
+            const result = window.api.saveJson(myData);
+            if (result.success) {
+                console.log('Данные успешно сохранены!');
+            }
+
         });
         this.modal.append(createBtn);
     }
