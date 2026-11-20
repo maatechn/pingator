@@ -1,5 +1,5 @@
 import { createPreloader } from './preloader.js';
-import { Card, createButton } from './card.js';
+import { Card } from './card.js';
 import { createForm, deleteForm } from './form.js';
 
 // header buttons handlers
@@ -28,18 +28,19 @@ function renderContent() {
         const card = new Card(item['name'], item['ip']);
         card.view(hostsGrid);
     }
+    Card.viewAddButton(hostsGrid);
 
-    const btn = createButton();
-    btn.addEventListener('click', () => {
-        console.log('btn click!');
-        //test
-        const myData = { name: 'test', ip: '0.0.0.0', items: ['task1', 'task2'] }
-        const result = window.api.saveJson(myData);
-        if (result.success) {
-            console.log('Данные успешно сохранены!');
-        }
-    });
-    content.append(btn);
+    // const btn = createButton();
+    // btn.addEventListener('click', () => {
+    //     console.log('btn click!');
+    //     //test
+    //     const myData = { name: 'test', ip: '0.0.0.0', items: ['task1', 'task2'] }
+    //     const result = window.api.saveJson(myData);
+    //     if (result.success) {
+    //         console.log('Данные успешно сохранены!');
+    //     }
+    // });
+    // content.append(btn);
 }
 
 // wait loading

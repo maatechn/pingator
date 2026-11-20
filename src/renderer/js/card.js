@@ -29,11 +29,17 @@ export class Card {
 
         container.append(card);
     }
-}
 
-export function createButton() {
-    const button = document.createElement('button');
-    button.className = 'btn-add';
-    button.ariaLabel = 'Добавить элемент';
-    return button;
+    static viewAddButton(container) {
+        const card = document.createElement('div');
+        card.className = 'host-card';
+        card.id = 'add-card'
+
+        card.innerHTML = `
+            <button class="btn-add" aria-label="Add host"></button>
+        `;
+
+        container.append(card);
+    }
+
 }
