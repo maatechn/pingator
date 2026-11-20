@@ -1,6 +1,7 @@
 export class Modal {
 
     init() {
+
         const modal = document.createElement('div');
         modal.className = 'modal';
 
@@ -13,10 +14,10 @@ export class Modal {
         });
 
         modal.innerHTML = `
-            <h2>Создание объекта</h2>
-            <input type=""text placeholder="Введите имя">
-            <input type=""text placeholder="Введите IP-адрес">
-            <button class="btn-submit">Создать</button>
+            <h2>Creating host</h2>
+            <input type=""text placeholder="Enter name of host">
+            <input type=""text placeholder="Enter IP address">
+            <button class="btn-submit">Create</button>
         `;
         modal.prepend(closeBtn);
 

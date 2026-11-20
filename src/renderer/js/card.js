@@ -9,7 +9,14 @@ export class Card {
 
     }
 
-    view(container) {
+    static createGrid() {
+        const grid = document.createElement('div');
+        grid.className = 'hosts-grid';
+        document.querySelector('main').append(grid);
+        Card.grid = grid;
+    }
+
+    view() {
         const card = document.createElement('div');
         card.className = 'host-card';
 
@@ -27,20 +34,26 @@ export class Card {
             </div>
         `;
 
-        container.append(card);
+        Card.grid.append(card);
     }
 
-    static viewAddButton(container) {
+    static viewAddButton(Modal) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-add';
+        btn.ariaLabel = 'Add host';
+
+        btn.addEventListener('click', () => {
+            const modal = new Modal();
+            modal.init();
+        });
+
         const card = document.createElement('div');
         card.className = 'host-card';
-        card.id = 'add-card'
+        card.id = 'add-btn-card';
+        card.append(btn);
 
-        card.innerHTML = `
-            <button class="btn-add" aria-label="Add host"></button>
-        `;
-
-        container.append(card);
-        return card;
+        Card.grid.append(card);
+        return btn;
     }
 
 }
