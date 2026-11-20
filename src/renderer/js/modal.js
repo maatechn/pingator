@@ -1,10 +1,25 @@
 export class Modal {
 
-    init() {
-
+    constructor() {
         const modal = document.createElement('div');
         modal.className = 'modal';
+        this.modal = modal;
+    }
 
+    init() {
+        this.modal.innerHTML = '<h2>Creating host</h2>';
+        this.renderCloseBtn()
+        this.renderNameInput()
+        this.renderIpInput()
+        this.renderCreateBtn()
+        document.querySelector('main').append(this.modal);
+    }
+
+    close() {
+        this.modal.remove();
+    }
+
+    renderCloseBtn() {
         const closeBtn = document.createElement('button');
         closeBtn.className = 'form-close-btn';
         closeBtn.innerHTML = `&times;`;
@@ -12,21 +27,40 @@ export class Modal {
         closeBtn.addEventListener('click', () => {
             this.close();
         });
-
-        modal.innerHTML = `
-            <h2>Creating host</h2>
-            <input type=""text placeholder="Enter name of host">
-            <input type=""text placeholder="Enter IP address">
-            <button class="btn-submit">Create</button>
-        `;
-        modal.prepend(closeBtn);
-
-        document.querySelector('main').append(modal);
-        this.modal = modal;
+        this.modal.append(closeBtn);
     }
 
-    close() {
-        this.modal.remove();
+    renderNameInput() {
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.placeholder = 'Enter name of host';
+
+        nameInput.addEventListener('input', () => {
+            console.log('test input name');
+        });
+        this.modal.append(nameInput);
+    }
+
+    renderIpInput() {
+        const IpInput = document.createElement('input');
+        IpInput.type = 'text';
+        IpInput.placeholder = 'Enter IP address';
+
+        IpInput.addEventListener('input', () => {
+            console.log('test inmup ip');
+        });
+        this.modal.append(IpInput);
+    }
+
+    renderCreateBtn() {
+        const createBtn = document.createElement('button');
+        createBtn.className = 'btn-submit';
+        createBtn.innerHTML = 'Create';
+
+        createBtn.addEventListener('click', () => {
+            console.log('test crt btn');
+        });
+        this.modal.append(createBtn);
     }
 
     handleClick(event) {
