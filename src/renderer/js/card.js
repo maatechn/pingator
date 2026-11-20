@@ -40,6 +40,7 @@ export class Card {
         `;
 
         container.append(card);
+        return card;
     }
 
 }

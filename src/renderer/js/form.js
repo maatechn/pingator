@@ -1,25 +1,26 @@
-export function createForm() {
+export class Modal {
 
-    const container = document.createElement('div');
-    container.className = 'modal';
+    constructor(id) {
+        this.id = id;
+    }
 
-    const form = document.createElement('form');
-    form.innerHTML = `
-        <button class="form-close-btn" title="Close">&times;</button>
-        <h2>Создание объекта</h2>
-        <input type=""text placeholder="Введите имя">
-        <input type=""text placeholder="Введите IP-адрес">
-        <button class="btn-submit">Создать</button>
-    `;
+    init() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = this.id;
 
-    container.append(form);
-    return container;
+        modal.innerHTML = `
+            <button class="form-close-btn" title="Close">&times;</button>
+            <h2>Создание объекта</h2>
+            <input type=""text placeholder="Введите имя">
+            <input type=""text placeholder="Введите IP-адрес">
+            <button class="btn-submit">Создать</button>
+        `;
 
-}
+        return modal;
+    }
 
-export function deleteForm() {
-
-    const container = document.getElementsByClassName('modal');
-    container.remove();
-
+    close() {
+        document.getElementById(this.id).remove()
+    }
 }

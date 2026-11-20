@@ -1,6 +1,6 @@
 import { createPreloader } from './preloader.js';
 import { Card } from './card.js';
-import { createForm, deleteForm } from './form.js';
+import { Modal } from './form.js';
 
 // header buttons handlers
 document.getElementById('min-btn').addEventListener('click', () => window.windowControls.minimize());
@@ -10,8 +10,17 @@ document.getElementById('close-btn').addEventListener('click', () => window.wind
 const content = document.querySelector('main');
 content.append(createPreloader());
 
-function renderContent() {
+// wait loading
+window.api.onPush((result) => {
+    if (result) {
+        content.innerHTML = '';
+        const hostsGrid = document.createElement('div');
+        hostsGrid.className = 'hosts-grid';
+        renderHosts(hostsGrid);
+    }
+});
 
+function renderHosts(container) {
     //test
     const data = [
         {name: 'prod1', ip: '10.0.0.1'},
@@ -28,8 +37,20 @@ function renderContent() {
         const card = new Card(item['name'], item['ip']);
         card.view(hostsGrid);
     }
-    Card.viewAddButton(hostsGrid);
 
+    const formAddBtn = Card.viewAddButton(hostsGrid);
+    formAddBtn.addEventListener('click', () => {
+        const modal = new Modal('modal');
+        content.append(modal.init());
+    });
+
+}
+
+function renderAddBtn(container) {
+    
+}
+
+//function renderContent() {
     // const btn = createButton();
     // btn.addEventListener('click', () => {
     //     console.log('btn click!');
@@ -41,12 +62,4 @@ function renderContent() {
     //     }
     // });
     // content.append(btn);
-}
 
-// wait loading
-window.api.onPush((result) => {
-    if (result) {
-        content.innerHTML = '';
-        renderContent();
-    }
-});
