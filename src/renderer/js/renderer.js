@@ -1,6 +1,6 @@
 import { createPreloader } from './preloader.js';
 import { Card } from './card.js';
-import { Modal } from './form.js';
+import { Modal } from './modal.js';
 
 // header buttons handlers
 document.getElementById('min-btn').addEventListener('click', () => window.windowControls.minimize());
@@ -26,7 +26,6 @@ function renderHosts(container) {
         {name: 'prod1', ip: '10.0.0.1'},
         {name: 'prod2', ip: '192.168.0.1'},
         {name: 'prod3', ip: '127.1.1.1'},
-        {name: 'prod4', ip: '0.0.0.0'}
     ];
 
     const hostsGrid = document.createElement('div');
@@ -40,8 +39,8 @@ function renderHosts(container) {
 
     const formAddBtn = Card.viewAddButton(hostsGrid);
     formAddBtn.addEventListener('click', () => {
-        const modal = new Modal('modal');
-        content.append(modal.init());
+        const modal = new Modal();
+        modal.init();
     });
 
 }

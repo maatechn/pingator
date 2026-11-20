@@ -1,26 +1,38 @@
 export class Modal {
 
-    constructor(id) {
-        this.id = id;
-    }
-
     init() {
         const modal = document.createElement('div');
         modal.className = 'modal';
-        modal.id = this.id;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'form-close-btn';
+        closeBtn.innerHTML = `&times;`;
+
+        closeBtn.addEventListener('click', () => {
+            this.close();
+        });
 
         modal.innerHTML = `
-            <button class="form-close-btn" title="Close">&times;</button>
             <h2>Создание объекта</h2>
             <input type=""text placeholder="Введите имя">
             <input type=""text placeholder="Введите IP-адрес">
             <button class="btn-submit">Создать</button>
         `;
+        modal.prepend(closeBtn);
 
-        return modal;
+        document.querySelector('main').append(modal);
+        this.modal = modal;
     }
 
     close() {
-        document.getElementById(this.id).remove()
+        this.modal.remove();
+    }
+
+    handleClick(event) {
+
+    }
+
+    handleKeyDown(event) {
+
     }
 }
