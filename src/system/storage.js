@@ -4,6 +4,10 @@ class Store {
     
     constructor(filePath) {
         this.filePath = filePath;
+        this.isExist = fs.existsSync(filePath);
+        if (!this.isExist) {
+            this.save([]);
+        }
     }
 
     save(data) {

@@ -7,7 +7,7 @@ export function createPreloader() {
     spinner.className = 'spinner';
 
     const label = document.createElement('div');
-    label.textContent = 'Загрузка приложения...';
+    label.textContent = 'App loading...';
 
     container.append(spinner, label);
     return container;

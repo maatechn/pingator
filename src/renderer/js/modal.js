@@ -59,15 +59,16 @@ export class Modal {
         createBtn.className = 'btn-submit';
         createBtn.innerHTML = 'Create';
 
-        createBtn.addEventListener('click', () => {
-            console.log('test crt btn');
-            //test
-            const myData = { name: this.nameInput.value, ip: this.IpInput.value}
-            const result = window.api.saveJson(myData);
-            if (result.success) {
-                console.log('Данные успешно сохранены!');
-            }
+        createBtn.addEventListener('click', async () => {
 
+            const data = await window.api.loadJson();
+            console.log(data);
+            data.push({ name: this.nameInput.value, ip: this.IpInput.value });
+
+            const result = await window.api.saveJson(data);
+            if (result.success) {
+                this.close();
+            }
         });
         this.modal.append(createBtn);
     }
