@@ -10,25 +10,23 @@ document.getElementById('close-btn').addEventListener('click', () => window.wind
 const content = document.querySelector('main');
 content.append(createPreloader());
 
+const modal = new Modal(updateContent);
+
 // wait loading
 window.api.onPush((result) => {
     if (result) {
         content.innerHTML = '';
-        renderContent();
+        Card.createGrid();
+        updateContent();
     }
 });
 
-async function renderContent() {
-
-    Card.createGrid();
-
-    // get data
+async function updateContent() {
+    Card.clearGrid();
     const data = await window.api.loadJson();
     for (const { name, ip } of data) {
         const card = new Card(name, ip);
         card.view();
     }
-
-    Card.viewAddButton(Modal);
-
+    Card.viewAddButton(modal);
 }

@@ -1,9 +1,10 @@
 export class Modal {
 
-    constructor() {
+    constructor(onSaveCallback) {
         const modal = document.createElement('div');
         modal.className = 'modal';
         this.modal = modal;
+        this.onSaveCallback = onSaveCallback;
     }
 
     init() {
@@ -67,6 +68,8 @@ export class Modal {
 
             const result = await window.api.saveJson(data);
             if (result.success) {
+                console.log('cb: ' + this.onSaveCallback);
+                await this.onSaveCallback();
                 this.close();
             }
         });

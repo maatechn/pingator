@@ -16,6 +16,10 @@ export class Card {
         Card.grid = grid;
     }
 
+    static clearGrid() {
+        Card.grid.innerHTML = '';
+    }
+
     view() {
         const card = document.createElement('div');
         card.className = 'host-card';
@@ -37,13 +41,12 @@ export class Card {
         Card.grid.append(card);
     }
 
-    static viewAddButton(Modal) {
+    static viewAddButton(modal) {
         const btn = document.createElement('button');
         btn.className = 'btn-add';
         btn.ariaLabel = 'Add host';
 
         btn.addEventListener('click', () => {
-            const modal = new Modal();
             modal.init();
         });
 
