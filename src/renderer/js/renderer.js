@@ -22,8 +22,12 @@ async function renderContent() {
 
     Card.createGrid();
 
-    const result = await window.api.loadJson();
-    console.log(result);
+    // get data
+    const data = await window.api.loadJson();
+    for (const { name, ip } of data) {
+        const card = new Card(name, ip);
+        card.view();
+    }
 
     Card.viewAddButton(Modal);
 
