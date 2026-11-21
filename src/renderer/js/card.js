@@ -37,6 +37,18 @@ export class Card {
                 <span class="host-card__ip">${this.ip}</span>
             </div>
         `;
+        
+        // draft
+        card.addEventListener('click', async () => {
+
+            let data = await window.api.loadJson();
+            data = data.filter(item => item.name !== this.name);
+
+            const result = await window.api.saveJson(data);
+            if (result.success) {
+                card.remove()
+            }
+        });
 
         Card.grid.append(card);
     }
